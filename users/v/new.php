@@ -2,20 +2,22 @@
 Шаблон добавление записи
 =======================
 */?>
-	<a href="index.php">Главная</a> 
-	<h1>Новый пользователь</h1>
-	<? if($error) { 
-		echo "<b style='color: red;'>Заполните все поля!</b>";
-	} ?>
-	<form action="index.php?act=new" method="post">
-		<div class="n">
-		    <label for="name">ФИО:</label>
-		</div>
-		<div class="enter">
-		    <input type="text" id="name" name="name" value="<?echo $_POST['name']?>">
-		</div>
-		<br/>
-		<br>
+   <a href="index.php">Главная</a> 
+   <h1>Новый пользователь</h1>
+   <?php 
+        if($error) { 
+            echo "<b style='color: red;'>Заполните все поля!</b>";
+	} 
+    ?>
+    <form action="index.php?act=new" method="post">
+    <div class="n">
+         <label for="name">ФИО:</label>
+     </div>
+     <div class="enter">
+	 <input type="text" id="name" name="name" value="<?echo $_POST['name']?>">
+      </div>
+      <br/>
+      <br>
 		<?php
 		    if($_POST['gender']=="m"){
 		        $m="selected";
