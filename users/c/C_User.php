@@ -35,72 +35,72 @@ class C_User extends C_Base
 		$mUser = M_User::Instance();
 		$user = $mUser->data($id_user,$table);
 		$this->content = $this->Template('./v/user.php', array('id_user' => $id_user,'user' => $user));
-  }
+                }
 	public function action_new(){
 		$this->title .= '::Добавление нового пользователя';
 		//Проверка на отсутствие пустых полей
 		if(($this->isPost())&&(!empty($_POST)))
 		{	
-      $error = true;
-      //Удаление тегов из полей
-      $name=strip_tags($_POST['name']);
+                        $error = true;
+                        //Удаление тегов из полей
+                        $name=strip_tags($_POST['name']);
 			$gender=strip_tags($_POST['gender']);			
-		  $date=strip_tags($_POST['datepicker']);
+		        $date=strip_tags($_POST['datepicker']);
 			$phone=strip_tags($_POST['phone']);
 			$mUser = M_User::Instance();
 			//Проверка введенных данных на соотвествие формату и корректность
 			//Формат введения даты
 			$err=$mUser->preg_format_date($date);
 			//Корректность даты(исключение несуществующих дат 31 февраля и т.д)
-      $err1=$mUser->k_date($date);
+                        $err1=$mUser->k_date($date);
 			//Проверка номера телефона на соотвествие формату
 			$err2=$mUser->preg_format_phone($phone);
 			//Проверка поля имя на содержание только руских букв
-      $err3=$mUser->k_name($name);
-			  if(($err)&&($err1)&&($err2)&&($err3)){
-		  		   $date=$mUser->reverse_date($date);
-				     $array=array('name'=>$name,'gender'=>$gender,'date'=>$date,'phone'=>$phone);
-				     $new=$mUser->user_new($array);
-				     if ($new)
-	            {
-		            header('Location: index.php');
-		            die();
-	           }
-		      }else{			    
+                        $err3=$mUser->k_name($name);
+			if(($err)&&($err1)&&($err2)&&($err3)){
+		  	    $date=$mUser->reverse_date($date);
+		            $array=array('name'=>$name,'gender'=>$gender,'date'=>$date,'phone'=>$phone);
+			    $new=$mUser->user_new($array);
+		            if ($new)
+	                    {
+		                header('Location: index.php');
+		                die();
+	                    }
+		        }else{			    
 			    $s1=((!$err)||(!$err1))?"<br>"."Введены некорректные данные в поле дата рождения":" ";
-				  $s2=(!$err2)?"<br>"."Введены некорректные данные в поле телефон":" ";
-				  $s3=(!$err3)?"<br>"."Введены некорректные данные в поле имя":" ";
-				  echo "<h4>".$s3.$s1.$s2."</h4>";
+		            $s2=(!$err2)?"<br>"."Введены некорректные данные в поле телефон":" ";
+			    $s3=(!$err3)?"<br>"."Введены некорректные данные в поле имя":" ";
+			    echo "<h4>".$s3.$s1.$s2."</h4>";
 			   }
 			
-      }else{
-	      $array=array('name'=>'','gender'=>'','date'=>'','phone'=>'');
-			  $error = false;
-      }
-		  $this->content = $this->Template('./v/new.php', array('array'=>$array, 'error' => $error ));
-      }
+                 }else{
+	               $array=array('name'=>'','gender'=>'','date'=>'','phone'=>'');
+		       $error = false;
+                }
+		$this->content = $this->Template('./v/new.php', array('array'=>$array, 'error' => $error ));
+          }
   public function action_edit(){
-		$this->title .= '::Редактирование информации о пользователе';
-		  $id_user = $_GET['id'];
-			//Проверка является ли введенное значение числом
-			if(is_numeric($id_user)){
-			   $mUser = M_User::Instance();
-				 //Получение данных для автозаполнения формы
-				 $table="table";
-				 $arr=$mUser->data($id_user,$table);
-				    $a_name=$arr['name'];
-	          $a_gender=$arr['gender'];
-            $a_date=$arr['date'];
-				    $a_date=$mUser->reverse_date($a_date);	
-            $a_phone=$arr['phone'];
-				if (($this->isPost())&&(!empty($_POST)))
-			   {   
-			        //Данные для автозаполнения в случае некорректного ввода
-			        $a_name=$_POST['name'];
-	            $a_gender=$_POST['gender'];
-              $a_date=$_POST['datepicker'];
-              $a_phone=$_POST['phone'];
-					//Удаление тегов из полей 
+         $this->title .= '::Редактирование информации о пользователе';
+	 $id_user = $_GET['id'];
+	//Проверка является ли введенное значение числом
+	if(is_numeric($id_user)){
+	     $mUser = M_User::Instance();
+	     //Получение данных для автозаполнения формы
+	     $table="table";
+	     $arr=$mUser->data($id_user,$table);
+	     $a_name=$arr['name'];
+	     $a_gender=$arr['gender'];
+             $a_date=$arr['date'];
+	     $a_date=$mUser->reverse_date($a_date);	
+             $a_phone=$arr['phone'];
+	     if (($this->isPost())&&(!empty($_POST)))
+	     {   
+                 //Данные для автозаполнения в случае некорректного ввода
+	         $a_name=$_POST['name'];
+	         $a_gender=$_POST['gender'];
+                 $a_date=$_POST['datepicker'];
+                 $a_phone=$_POST['phone'];
+		 //Удаление тегов из полей 
 					$name=strip_tags($_POST['name']);
 					$gender=strip_tags($_POST['gender']);
                     $date=strip_tags($_POST['datepicker']);
