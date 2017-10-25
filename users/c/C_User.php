@@ -101,48 +101,43 @@ class C_User extends C_Base
                  $a_date=$_POST['datepicker'];
                  $a_phone=$_POST['phone'];
 		 //Удаление тегов из полей 
-					$name=strip_tags($_POST['name']);
-					$gender=strip_tags($_POST['gender']);
-                    $date=strip_tags($_POST['datepicker']);
-                    $phone=strip_tags($_POST['phone']);
-					
-					
-					//Проверка введенных данных на соотвествие формату и корректность
-				    $err=$mUser->preg_format_date($date);
-                    $err1=$mUser->k_date($date);
-				    $err2=$mUser->preg_format_phone($phone);
-					$err3=$mUser->k_name($name);
-					
-			        if(($err)&&($err1)&&($err2)&&($err3)){
-	                    $date = $mUser->reverse_date($date);
-				        $error = true;
-						$array=array('name'=>$name,'gender'=>$gender,'date'=>$date,'phone'=>$phone);
-				        $edit=$mUser->user_edit($id_user,$array);
-	                    if ($edit)
-	                    {
-		                    header('Location: index.php');
-		                    die();
-	                    }
-				    }else{
-				        $s1=((!$err)||(!$err1))?"<br>"."Введены некорректные данные в поле дата рождения":" ";
-					    $s2=(!$err2)?"<br>"."Введены некорректные данные в поле телефон":" ";
-						$s3=(!$err3)?"<br>"."Введены некорректные данные в поле имя":" ";
-				        echo "<h4>".$s3.$s1.$s2."</h4>";
-				    }
-		        }else{
+		  $name=strip_tags($_POST['name']);
+		  $gender=strip_tags($_POST['gender']);
+                  $date=strip_tags($_POST['datepicker']);
+                  $phone=strip_tags($_POST['phone']);
+		  //Проверка введенных данных на соотвествие формату и корректность
+		  $err=$mUser->preg_format_date($date);
+                  $err1=$mUser->k_date($date);
+		  $err2=$mUser->preg_format_phone($phone);
+		  $err3=$mUser->k_name($name);
+		  if(($err)&&($err1)&&($err2)&&($err3)){
+	             $date = $mUser->reverse_date($date);
+		     $error = true;
+		     $array=array('name'=>$name,'gender'=>$gender,'date'=>$date,'phone'=>$phone);
+		     $edit=$mUser->user_edit($id_user,$array);
+	             if ($edit)
+	                {
+		           header('Location: index.php');
+		           die();
+	                }
+		   }else{
+		        $s1=((!$err)||(!$err1))?"<br>"."Введены некорректные данные в поле дата рождения":" ";
+			$s2=(!$err2)?"<br>"."Введены некорректные данные в поле телефон":" ";
+			$s3=(!$err3)?"<br>"."Введены некорректные данные в поле имя":" ";
+		        echo "<h4>".$s3.$s1.$s2."</h4>";
+		        }
+		   }else{
 	                $array=array('name'=>'','gender'=>'','date'=>'','phone'=>'');
 	                $error = false;
                 }
-        
-		    $this->content = $this->Template('./v/edit.php', array('array'=>$array,'id_user' => $id_user, 'a_name' => $a_name, 'a_gender' => $a_gender,'a_date' => $a_date, 'a_phone' => $a_phone, 'name' => $name, 'gender' => $gender,'date' => $date, 'phone' => $phone, 'error' => $error));		
-        }else{
+                $this->content = $this->Template('./v/edit.php', array('array'=>$array,'id_user' => $id_user, 'a_name' => $a_name, 'a_gender' => $a_gender,'a_date' => $a_date, 'a_phone' => $a_phone, 'name' => $name, 'gender' => $gender,'date' => $date, 'phone' => $phone, 'error' => $error));		
+            }else{
 	        echo "Введен неверный адрес";
-	    }
+	   }
 	}
     
 	public function action_del(){
 		$this->title .= '::удаление записи';
-		
 		if(($this->isGet())&&(isset($_GET['id']))&&(is_numeric($_GET['id'])))
 		{
 			$id = $_GET['id'];
@@ -151,10 +146,10 @@ class C_User extends C_Base
 			$user=$mUser->data($id,$table);
 			$mUser->delete($id);
 			$this->content = $this->Template('./v/del.php', array('id' => $id, 'art' => $user));
-        }else{
-		    $error="Запись не найдена";
-         	$this->content = $this->Template('./v/del.php',array('error' => $error));
-		}
+                 }else{
+		       $error="Запись не найдена";
+         	       $this->content = $this->Template('./v/del.php',array('error' => $error));
+	         }
 	}
 }
 	
