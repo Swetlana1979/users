@@ -1,8 +1,8 @@
 body 
 {
-	font-family: Georgia;
-	font-size: 14px;
-	color: #000;
+   font-family: Georgia;
+   font-size: 14px;
+   color: #000;
 }
 h1,h4,h6
 {
@@ -14,16 +14,16 @@ label
 }
 a
 {
-	color: #ffa500;
-	text-decoration: none;
-	font-family: Georgia;
+   color: #ffa500;
+   text-decoration: none;
+   font-family: Georgia;
 }
 
 a:hover 
 {
-	text-decoration: underline;
-	font-family: Georgia;
-	color:red;
+   text-decoration: underline;
+   font-family: Georgia;
+   color:red;
 }
 select
 {
@@ -31,35 +31,34 @@ select
 }
 input[type="text"]
 {
-	width: 300px;
-	color: #ffa500;
+   width: 300px;
+   color: #ffa500;
 }
 .blok
 {
     display:inline-block;
-	background-color:#ffffff;
-	color:#ffa500; 
-	font-family: Georgia;
-	width:250px;
-	/*border-radius:20px;*/
-	text-align:center;
+    background-color:#ffffff;
+    color:#ffa500; 
+    font-family: Georgia;
+    width:250px;
+    text-align:center;
 }
 .num
 {
   display:inline-block;
   width:30px;
   background-color:#ffffff;
-	color:#ffa500;
-	border-radius:10px;
-	text-align:center;
+  color:#ffa500;
+  border-radius:10px;
+  text-align:center;
 }
 a#num
 {
-    color:#ffffff;
+   color:#ffffff;
 }
 #datepicker
 {
-    width: 300px;
+   width: 300px;
 }
 .n
 {
@@ -98,8 +97,7 @@ a#num
    font-family: Georgia, serif;
    text-decoration: none;
    vertical-align: middle;
-   
-   }
+  }
 .button:hover 
 {
    border-top-color: #f07c16;
@@ -122,7 +120,6 @@ a#num
 { 
    content: "\270E"; 
    color:red;
-
 }
 
 .delete:before 
