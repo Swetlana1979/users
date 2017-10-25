@@ -3,7 +3,7 @@
 */?>
 	<a href="index.php">Главная</a> 
 	<h1>Пользователь номер <?echo $id_user?></h1>
-	<? if($error) { ?>
+	<?php if($error) { ?>
 		<b style="color: red;">Заполните все поля!</b>
 	<? } ?>
 	<form action="index.php?act=edit&id=<?echo $id_user?>" method="post">
@@ -14,7 +14,7 @@
 		    <input type="text" name="name" id="name" value="<?echo "".$a_name?>"/></div>
 		<br/>
 		<br/>
-		<?
+		<?php
 		if($a_gender=="m"){
 		    $m="selected";
 		    $j="";
