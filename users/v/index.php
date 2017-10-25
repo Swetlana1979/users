@@ -17,12 +17,11 @@
 		   $mass=array_reverse($mass);
 		   $date=implode('-',$mass);
 		   echo $date;?>
-				</div>
-				<div class="blok">Номер телефона:<?echo $user['phone']?></div>
-				<a href="./index.php?act=edit&id=<?echo $user['id_user']?>" class="edit" alt="редактировать"></a>
-				<a href="" class='del delete' alt="удалить" id="<?echo "a".$user['id_user']?>"></a>
-	     			
-	<? endforeach ?>		
+		</div>
+		<div class="blok">Номер телефона:<?echo $user['phone']?></div>
+		<a href="./index.php?act=edit&id=<?echo $user['id_user']?>" class="edit" alt="редактировать"></a>
+		<a href="" class='del delete' alt="удалить" id="<?echo "a".$user['id_user']?>"></a>
+	  <? endforeach ?>		
     </ul>
     <br>
     <br>
